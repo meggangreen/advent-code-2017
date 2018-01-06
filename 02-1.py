@@ -5,8 +5,15 @@
 
 """
 
+checksum = 0
 
-    # checksum = 0
+with open("02-1.txt") as puzzle:
+    for line in puzzle:
+        vals = line.split()
+        checksum = checksum + (max(vals) - min(vals))
+
+print checksum
+
     # with open file
     # for each line
     #   find the min and max

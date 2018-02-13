@@ -53,4 +53,4 @@ def count_redistribution_cycles_two():
 
         curr_config_s = ",".join([str(number) for number in curr_config])
 
-    return len(configs)
+    return (len(configs) - configs[curr_config_s])

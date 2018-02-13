@@ -6,8 +6,10 @@ def count_redistribution_cycles():
 
     configs = set()
     curr_config = banks
+    count = -1
 
     while curr_config not in configs:
+        count += 1
         configs.add(curr_config)
         max_blocks = max(curr_config)
         i = index(max(curr_config))
@@ -18,3 +20,5 @@ def count_redistribution_cycles():
             i += 1
             curr_config[i] += 1
             max_blocks += -1
+
+    return count

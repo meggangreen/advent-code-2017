@@ -33,12 +33,12 @@ def count_redistribution_cycles_two():
     file = open('06.txt').read()
     banks = [int(number) for number in file.split(',')]
 
-    configs = set()
+    configs = {}
     curr_config = banks
     curr_config_s = ",".join([str(number) for number in curr_config])
 
     while curr_config_s not in configs:
-        configs.add(curr_config_s)
+        configs[curr_config_s] = len(configs)
         max_blocks = max(curr_config)
         i = curr_config.index(max(curr_config))
         curr_config[i] = 0

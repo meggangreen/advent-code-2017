@@ -10,7 +10,7 @@ def count_redistribution_cycles():
 
     while curr_config not in configs:
         count += 1
-        configs.add(curr_config)
+        configs.add(",".join([str(number) for number in curr_config]))
         max_blocks = max(curr_config)
         i = index(max(curr_config))
 

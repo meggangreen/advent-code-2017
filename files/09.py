@@ -45,3 +45,20 @@ def calc_total_score(stream):
             group += -1
 
     return total
+
+
+def count_garbage_chars(garbage):
+    total = 0
+
+    for trash in garbage:
+        t_count = 0
+        i = 0
+        while i < len(trash):
+            if trash[i] == '!':
+                i += 2
+            else:
+                t_count += 1
+                i += 1
+        total += t_count
+
+    return total

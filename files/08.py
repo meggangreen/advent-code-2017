@@ -41,12 +41,16 @@ def parse_input(filepath):
 
 
 def do_instructions(registers, instructions):
+    maxest = 0
     for i in instructions:
         if eval(i.cond) is True:
             r_value = str(registers[i.target].value)
-            registers[i.target].value = eval(f'{r_value} {i.op} {i.value}')
+            r_value = eval(f'{r_value} {i.op} {i.value}')
+            registers[i.target].value = r_value
+            maxest = r_value if r_value > maxest else maxest
 
-    return registers
+
+    return registers, maxest
 
 
 def find_max_value(registers):
@@ -58,7 +62,8 @@ def find_max_value(registers):
 if __name__ == '__main__':
     filepath = "08.txt"
     registers, instructions = parse_input(filepath)
-    registers = do_instructions(registers, instructions)
+    registers, pt2 = do_instructions(registers, instructions)
     pt1 = find_max_value(registers)
 
     print(f"Part 1: {pt1}")
+    print(f"Part 2: {pt2}")

@@ -1,5 +1,3 @@
-import re
-
 class Register:
     def __init__(self, title, value=0):
         self.title = title
@@ -21,7 +19,6 @@ class Instruction:
 
 
 def parse_input(filepath):
-
     with open(filepath) as file:
         lines = [ln.split() for ln in file.readlines()]
 
@@ -55,7 +52,6 @@ def do_instructions(registers, instructions):
 
 def find_max_value(registers):
     return max([r.value for r in registers.values()])
-
 
 
 ################################################################################

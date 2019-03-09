@@ -5,13 +5,13 @@ def parse_edges(filepath):
     edges = {}
     for line in lines:
         nodes = line.split(' <-> ')
-        edges[nodes[0]] = nodes[1].split(', ')
+        edges[int(nodes[0])] = [int(n) for n in nodes[1].split(', ')]
 
     return edges
 
 
-def find_connected_to(node='0', edges=None):
-    nodes = set(node)
+def find_connected_to(node, edges):
+    nodes = set([node])
 
     if not edges:
         return nodes
@@ -26,7 +26,21 @@ def find_connected_to(node='0', edges=None):
     return nodes
 
 
+def find_all_groups(edges):
+    all_nodes = set(edges.keys())
+    groups = []
+
+    while all_nodes:
+        group_lead = all_nodes.pop()
+        group = find_connected_to(group_lead, edges)
+        all_nodes.difference_update(group)
+        groups.append(group)
+
+    return groups
+
+
 ################################################################################
 if __name__ == '__main__':
     edges = parse_edges('12.txt')
-    print(f"Part 1: {len(find_connected_to(node='0', edges=edges))}")
+    print(f"Part 1: {len(find_connected_to(0, edges))}")
+    print(f"Part 2: {len(find_all_groups(edges))}")
